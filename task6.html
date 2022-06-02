@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Dice Expression Processor</title>
+</head>
+<body>
+    <header>
+        <img src="images/Banner.png" alt="Dice Banner">
+        <h1>Welcome to the Dice Expression Calculator</h1>
+    </header>
+    <main>
+        
+        
+        <span id="intro/instructions">
+            <p>This calculator will take any dice expression similar to those found in common TTRPG games like Dungeons & Dragons and provide both the brief, summarized result of the expression and the detailed result showing the result of each individual die.</p>
+            <p>In the box below, please enter your dice expression. You can include any number of die-rolls, and use mathematical order of operations to make a formula of them. For example, <br>1d20 ^ (2d12 * 3d10) / 4d8 + 5d6 - 6d4<br><br>. If you are familiar with Javascript's Math library, you can use those commands as well, such as <br>Math.floor(1d100/1d20)<br>.</p>
+        </span>
+        
+        <span class="calc">
+            <input type="text" id="expression">
+            <button type="button" id="processButton">Process Expression</button>
+            <p id="summarized">Your result summary will appear here.</p>
+            <hr>
+            <p id="detailed">The detailed breakdown of your result will appear here</p>
+        </span>
+    </main>
+    <footer>
+        &copy;<span id="year"></span> - Dylan Ruppell
+    </footer>
+    
+    
+</body>
+<script async src="scripts/task6.js"></script>
+</html>
