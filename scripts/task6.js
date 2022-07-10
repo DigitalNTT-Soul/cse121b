@@ -4,30 +4,29 @@
 function parseAndRoll(expressionString) {
     // use a regular expression to find all instances of "<num>d<num>" (a die-roll indicator)
     // "roll" the dice, and replace each die-roll indicator in the original string with the results of the die-roll
-    expressionString = expressionString.replaceAll(/(\d+)d(\d+)/ig, function(match, p1, p2) {
-        // in case multiple dice are rolled in a single die-roll, wrap the entire result set for each die-roll in parentheses
-        let str = "("
-        // use a for-loop to iterate through each die of a die-roll
-        for (let i = 0; i < p1;) {
-            // roll the die and append the result to the string holding the result set.
-            str += Math.ceil(Math.random()*p2)
-            // insert an addition operator if this die is not the last die in the roll
-            if (++i < p1) str += " + "
+    return expressionString.replaceAll(/(\d+)d(\d+)/ig,
+        function(match, p1, p2) {
+            // in case multiple dice are rolled in a single die-roll, wrap the entire result set for each die-roll in parentheses
+            let str = "("
+            // use a for-loop to iterate through each die of a die-roll
+            for (let i = 0; i < p1;) {
+                // roll the die and append the result to the string holding the result set.
+                str += Math.ceil(Math.random()*p2)
+                // insert an addition operator if this die is not the last die in the roll
+                if (++i < p1) str += " + "
+            }
+            // finish wrapping the result set in parentheses
+            str += ")"
+            // return the result set of the die-roll, which will then replace the die-roll indicator in the original expression
+            return str
         }
-        // finish wrapping the result set in parentheses
-        str += ")"
-        // return the result set of the die-roll, which will then replace the die-roll indicator in the original expression
-        return str
-    })
-
-    // return the processed expressionString
-    return expressionString
+    )
 }
 
 // write function that processes the entire expression as a mathematical equation after the RNG elements have been parsed, processed, and inserted
 function fullExpressionProcessor(detailedResults) {
     // write a function that sandboxes the evaluation of the result string, in case the user 
-    let sandbox = function(detailedResults) {
+    return function(detailedResults) {
         // null out certain elements in this scope for sandboxing purposes, to prevent users from accessing it from the expression entry field
         let window = null;
         let console = null;
@@ -48,11 +47,7 @@ function fullExpressionProcessor(detailedResults) {
         // return the output
         return output
         
-    }
-
-    // call the sandboxing function in a way that overwrites the "this" object with an empty list inside the scope of the sandbox function
-    //      in an effort to make the eval() statement inside the sandbox function a little bit more secure.
-    return sandbox.call([], detailedResults)
+    }.call([], detailedResults)
 }
 
 // declare a function to output both the summarized and detailed results to the 
@@ -92,6 +87,13 @@ function processorMain() {
 
 // apply listener on the button that triggers the processorMain function
 document.getElementById("processButton").addEventListener("click",processorMain)
+
+// make a quick little button listener to clear the "exprssion"s text entry field whenever the button is pressed
+document.getElementById("clearButton").addEventListener("click",
+    function() {
+        document.getElementById("expression").value=''
+    }
+)
 
 // add a listener to "expression" element that allows the user to press enter to achieve the same effect as clicking "processButton" with the mouse
 document.getElementById("expression").addEventListener("keypress", function(event) {
