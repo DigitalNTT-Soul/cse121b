@@ -16,12 +16,12 @@
         
         
         <span id="intro/instructions">
-            <p>This calculator will take any dice expression similar to those found in common TTRPG games like Dungeons & Dragons and provide both the brief, summarized result of the expression and the detailed result showing the result of each individual die.</p>
-            <p>In the box below, please enter your dice expression. You can include any number of die-rolls, and use mathematical order of operations to make a formula of them. For example, <br>1d20 ^ (2d12 * 3d10) / 4d8 + 5d6 - 6d4<br><br>. If you are familiar with Javascript's Math library, you can use those commands as well, such as <br>Math.floor(1d100/1d20)<br>.</p>
+            <p>This calculator will take any dice expression similar to those found in common TTRPG games like Dungeons & Dragons and provide both the randomized results of the expression in both a brief, summarized format and a detailed breakdown of the result of each individual die.</p>
+            <p>In the box below, please enter your dice expression. You can include any number of die-rolls or constants, and use mathematical order of operations to make a formula of them. For example, <br>(1d20 ^ (2d12 * 3d10) / 4d8 + 5d6 - 6d4) + 7<br><br>. If you are familiar with Javascript's Math library, you can use those commands as well, such as <br>Math.floor(1d100/1d20)<br>.</p>
         </span>
         
         <span class="calc">
-            <input type="text" id="expression">
+            <input type="text" id="expression" value="(1d20 ^ (2d12 * 3d10) / 4d8 + 5d6 - 6d4) + 7">
             <button type="button" id="processButton">Process Expression</button>
             <p id="summarized">Your result summary will appear here.</p>
             <hr>
